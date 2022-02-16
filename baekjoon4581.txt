@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h> // strlen
+
+int main()
+{
+	char a[71];
+	while (*a != '#') // if input "#", end while loop
+	{
+		scanf("%s", a);
+		int yes = 0, no = 0, absent = 0;
+		for (int i = 0; i < strlen(a); i++)
+		{
+			if (a[i] == 'Y') // yes
+				yes++;
+			else if (a[i] == 'N') // no
+				no++;
+			else if (a[i] == 'A') // absent
+				absent++;
+		}
+		if (strlen(a) % 2 == 0 && absent >= strlen(a) / 2)
+			printf("need quorum\n");
+		else if (strlen(a) % 2 == 1 && absent > strlen(a) / 2)
+			printf("need quorum\n");
+		else if (yes > no)
+			printf("yes\n");
+		else if (yes < no)
+			printf("no\n");
+		else if (yes == no)
+			printf("tie\n");
+	}
+	return 0;
+}
